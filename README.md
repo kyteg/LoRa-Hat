@@ -58,7 +58,7 @@ For Receiver:
 python3 lora-rx.py
 ```
 
-<img src="images/LoRa-demo-code.jpg" alt="LoRa demo code" width="1000"/>
+<img src="images/Lora-demo-code.jpg" alt="LoRa demo code" width="1000"/>
 
 ### 🛠️ Troubleshoot
 
