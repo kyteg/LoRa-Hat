@@ -62,14 +62,14 @@ python3 lora-rx.py
 
 ### 🛠️ Troubleshoot
 
-If you get the error `lgpio.error: 'GPIO busy'` and `/dev/spidev0.1` is present when listing '/dev'
+If you get the error `lgpio.error: 'GPIO busy'` and `/dev/spidev0.1` is present when listing `/dev`
 
 ```bash
 ls /dev/spidev*
 /dev/spidev0.0  /dev/spidev0.1
 ```
 
-SPI driver will not allow the code to use CS1.
+SPI driver will not allow the code to use CE1.
 
 Add the following line to `/boot/firmware/config.txt` and reboot.
 
