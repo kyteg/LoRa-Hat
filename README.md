@@ -18,7 +18,7 @@ A compact, high-performance LoRa HAT for Raspberry Pi — designed for long-rang
 
 ## 📦 Repository Contents
 ```
-lora-pi-hat/
+LoRa-Hat/
 ├── firmware/ # Example Python code
 ├── images/ # Photos and diagrams
 └── README.md
@@ -101,3 +101,9 @@ ls /dev/spidev*
 | RESET    | GPIO5       | 29           | LoRa reset pin                                  |
 
 > **Note**: DIO pins can be disconnected from the Pi by removing the respective jumpers on the HAT.
+
+## 📑 Referenfes
+
+- RFM95W datasheet: https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf
+- adafruit-circuitpython-rfm9x docs https://docs.circuitpython.org/projects/rfm9x/en/latest/api.html
+- adafruit-circuitpython-rfm9x GitHub page https://github.com/adafruit/Adafruit_CircuitPython_RFM
