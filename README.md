@@ -184,7 +184,7 @@ sudo systemctl restart meshtasticd
 
 ### Access the Web UI
 
-Navigate to https://[IP of your Raspberry Pi]
+Navigate to `https://[IP of your Raspberry Pi]`
 
 Select "New Connection" and "connect" (Your Pi's IP address should be preilled in the HTTP section)
 
