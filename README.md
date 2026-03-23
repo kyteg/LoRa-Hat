@@ -151,6 +151,10 @@ SPI:
   Device: /dev/spidev0.0
   Speed: 125000
   GpioChip: /dev/gpiochip0
+
+Webserver:
+  Port: 443 # Port for Webserver & Webservices
+  RootPath: /usr/share/meshtasticd/web # Root Dir of WebServer
 ```
 
 ### Start the Service
@@ -171,6 +175,13 @@ If not, make changes to the configuration and restart the meshtasticd service wi
 sudo systemctl daemon-reload
 sudo systemctl restart meshtasticd
 ```
+
+### Access the Web UI
+
+Navigate to https://[IP of your Raspberry Pi]
+
+Select "New Connection" and "connect" (Your Pi's IP address should be preilled in the HTTP section)
+
 
 ### Install Meshtastic CLI
 ```bash
@@ -193,6 +204,9 @@ Reboot the node:
 ```bash
 meshtastic --host localhost --reboot
 ```
+
+
+### Basic CLI commands
 
 List nodes:
 ```bash
