@@ -107,3 +107,104 @@ ls /dev/spidev*
 - RFM95W datasheet: https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf
 - adafruit-circuitpython-rfm9x docs https://docs.circuitpython.org/projects/rfm9x/en/latest/api.html
 - adafruit-circuitpython-rfm9x GitHub page https://github.com/adafruit/Adafruit_CircuitPython_RFM
+
+
+
+
+## Getting Started with Meshtastic
+
+This HAT is compatible with Meshtastic using the native Linux daemon (meshtasticd), allowing your Raspberry Pi to operate as a full-featured LoRa mesh node.
+
+### Install Meshtastic Daemon
+```bash
+sudo apt update
+sudo apt install meshtasticd
+```
+
+### Enable SPI
+Ensure SPI is enabled:
+
+```bash
+sudo raspi-config
+# Interface Options -> SPI -> Enable
+sudo reboot
+```
+
+### Configure Meshtastic
+
+Edit the configuration file:
+
+```bash
+sudo nano /etc/meshtasticd/config.yaml
+```
+
+Use the following configuration:
+
+```bash
+Lora:
+  Module: SX1276
+  CS: 7        
+  IRQ: 25      
+  Reset: -1  
+
+SPI:
+  Device: /dev/spidev0.0
+  Speed: 125000
+  GpioChip: /dev/gpiochip0
+```
+
+### Start the Service
+```bash
+sudo systemctl enable meshtasticd
+sudo systemctl start meshtasticd
+```
+
+Check logs:
+```bash
+journalctl -u meshtasticd -f
+```
+
+You should see the radio initialise successfully.
+
+If not, make changes to the configuration and restart the meshtasticd service with: 
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart meshtasticd
+```
+
+### Install Meshtastic CLI
+```bash
+pip3 install meshtastic
+```
+
+### Initial Setup
+
+Set region (Australia/New Zealand):
+```bash
+meshtastic --host localhost --set lora.region ANZ
+```
+
+Set default channel and modem preset:
+```bash
+meshtastic --host localhost --ch-longfast
+```
+
+Reboot the node:
+```bash
+meshtastic --host localhost --reboot
+```
+
+List nodes:
+```bash
+meshtastic --host localhost --nodes
+```
+
+Send a broadcast message:
+```bash
+meshtastic --host localhost --sendtext "Hello from XenoLabs Pi"
+```
+
+Listen for traffic:
+```bash
+meshtastic --host localhost --listen
+```
