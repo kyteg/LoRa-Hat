@@ -130,6 +130,12 @@ sudo raspi-config
 sudo reboot
 ```
 
+### Check we're using CE0
+
+Ensure the output of `ls /dev/spidev*` does not contain `/dev/spidev0.1`
+
+If it does, see the "Troubleshoot" section above and ensure the output of `ls /dev/spidev*` does not contain `/dev/spidev0.1`.
+
 ### Configure Meshtastic
 
 Edit the configuration file:
