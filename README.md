@@ -28,11 +28,24 @@ LoRa-Hat/
 ```
 ## 🚀 Getting Started
 
+To get started with Meshtastic, you can run `setup-meshtastic.sh` on your raspberry pi: 
+
+```
+wget 
+chmod +x setup-meshtastic.sh
+sudo ./setup-meshtastic.sh
+```
+
+Alternatively, you can set up Meshtasticd manually - instrcuctions at the bottom of this page.
+
+To get started with Lora radio, please see below:
+
 ### 🧰 Requirements
 
 - Raspberry Pi 3, 4, or 5
 - Python 3.7+
 - LoRa HAT attached to GPIO header
+- Antenna attached to the Pi
 
 ### 📥 Install Dependencies
 
@@ -120,9 +133,15 @@ This HAT is compatible with Meshtastic using the native Linux daemon (meshtastic
 
 ### Quick Start
 
-To get started with meshtasticd, please run `setup-meshtastic.sh` under the `scripts` folder in this repo.  
+To get started with Meshtastic, you can run `setup-meshtastic.sh` on your raspberry pi: 
 
+```
+wget 
+chmod +x setup-meshtastic.sh
+sudo ./setup-meshtastic.sh
+```
 
+Alternatively, see below for manual setup:
 
 ### Manually get started with Meshtasticd
 Instructions below will manually set up Meshtasticd
