@@ -1,3 +1,5 @@
+You can contact me on Discord - kyteg
+
 # 👽 XenoLabs LoRa Raspberry Pi HAT
 
 A compact, high-performance LoRa HAT for Raspberry Pi — designed for long-range wireless communication, custom mesh protocols, and rapid prototyping.
