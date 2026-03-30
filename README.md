@@ -118,6 +118,15 @@ ls /dev/spidev*
 
 This HAT is compatible with Meshtastic using the native Linux daemon (meshtasticd), allowing your Raspberry Pi to operate as a full-featured LoRa mesh node.
 
+### Quick Start
+
+To get started with meshtasticd, please run `setup-meshtastic.sh` under the `scripts` folder in this repo.  
+
+
+
+### Manually get started with Meshtasticd
+Instructions below will manually set up Meshtasticd
+
 ### Install Meshtastic Daemon
 ```bash
 sudo apt update
