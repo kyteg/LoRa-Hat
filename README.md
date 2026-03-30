@@ -1,4 +1,4 @@
-# Contact me
+# 📩 Contact me
 Contact me on Discord - kyteg
 
 # 👽 XenoLabs LoRa Raspberry Pi HAT
