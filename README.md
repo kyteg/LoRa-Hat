@@ -151,10 +151,10 @@ Use the following configuration:
 
 ```bash
 Lora:
-  Module: SX1276
-  CS: 7        
-  IRQ: 25      
-  Reset: -1  
+  Module: RF95
+  CS: 7
+  IRQ: 25
+  Reset: 5
 
 SPI:
   Device: /dev/spidev0.0
