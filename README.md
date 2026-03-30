@@ -7,27 +7,16 @@ A compact, high-performance LoRa HAT for Raspberry Pi designed for long-range wi
 
 <img src="images/LoRa-Hat-on-Pi.jpg" alt="XenoLabs LoRa HAT" width="700"/>
 
-## 🔧 Features
+## Features
 
-- Semtech SX1276/78 LoRa radio (RFM95W)
+- RFM95W LoRa radio
 - Frequency: 915 MHz (AU/NZ/US)
-- Fully compatible with Raspberry Pi 3/4/5
+- Compatible with Raspberry Pi 3/4/5
 - Compatible with Meshtastic (meshtasticd)
-- 3.3V logic-level safe
-- Low power consumption
-- SMA antenna connector
-- DIO breakout pins
-- Jumpers to toggle direct connection to Pi GPIOs
-- Designed by [XenoLabs](https://xeno-labs.io)
 
-## 📦 Repository Contents
-```
-LoRa-Hat/
-├── firmware/ # Example Python code
-├── images/ # Photos and diagrams
-└── README.md
-```
 ## 🚀 Getting Started
+
+### Meshtastic
 
 To get started with Meshtastic, you can run `setup-meshtastic.sh` on your raspberry pi: 
 
@@ -37,56 +26,31 @@ chmod +x setup-meshtastic.sh
 sudo ./setup-meshtastic.sh
 ```
 
-Alternatively, you can set up Meshtasticd manually - instrcuctions at the bottom of this page.
+Once set up, you can access the Web UI:
 
-To get started with Lora radio, please see below:
+Navigate to `https://[IP of your Raspberry Pi]` (you may need to get past browser warnings).
 
-### 🧰 Requirements
+Select "New Connection" and "connect" (Your Pi's IP address should be prefilled in the HTTP section)
 
-- Raspberry Pi 3, 4, or 5
-- Python 3.7+
-- LoRa HAT attached to GPIO header
-- Antenna attached to the Pi
 
-### 📥 Install Dependencies
+Alternatively, you can set up Meshtasticd manually:
 
-Install the Python dependencies
+#### Install Meshtastic Daemon
 ```bash
-pip install adafruit-circuitpython-rfm9x
+sudo apt update
+sudo apt install meshtasticd
 ```
-Enable SPI on Raspberry Pi
+
+#### Enable SPI
+Ensure SPI is enabled:
+
 ```bash
 sudo raspi-config
-
--> 5 Interfacing Options -> P4 SPI -> <Yes>
-
+# Interface Options -> SPI -> Enable
 sudo reboot
 ```
 
-You can now run the demo (in the Firmware directory of this repo)!
-
-For Transmitter:
-```bash
-python3 lora-tx.py
-```
-
-For Receiver:
-```bash
-python3 lora-rx.py
-```
-
-<img src="images/Lora-demo-code.jpg" alt="LoRa demo code" width="1000"/>
-
-### 🛠️ Troubleshoot
-
-If you get the error `lgpio.error: 'GPIO busy'` and `/dev/spidev0.1` is present when listing `/dev`
-
-```bash
-ls /dev/spidev*
-/dev/spidev0.0  /dev/spidev0.1
-```
-
-SPI driver will not allow the code to use CE1.
+#### Check we're using CE0
 
 Add the following line to `/boot/firmware/config.txt` and reboot.
 
@@ -101,74 +65,7 @@ ls /dev/spidev*
 /dev/spidev0.0
 ```
 
-## 📌 Pinout
-
-| Function | Pi GPIO Pin | Physical Pin | Notes                                           |
-|----------|-------------|--------------|-------------------------------------------------|
-| DIO0     | GPIO25      | 22           |                                                 |
-| DIO1     | GPIO17      | 11           |                                                 |
-| DIO3     | GPIO27      | 13           |                                                 |
-| DIO4     | GPIO22      | 15           |                                                 |
-| DIO5     | GPIO23      | 16           |                                                 |
-| DIO6     | GPIO24      | 18           |                                                 |
-| MOSI     | GPIO10      | 19           | SPI MOSI                                        |
-| MISO     | GPIO9       | 21           | SPI MISO                                        |
-| SCK      | GPIO11      | 23           | SPI Clock                                       |
-| NSS      | GPIO7       | 26           | SPI Chip Select (CE1 / can be reassigned)       |
-| RESET    | GPIO5       | 29           | LoRa reset pin                                  |
-
-> **Note**: DIO pins can be disconnected from the Pi by removing the respective jumpers on the HAT.
-
-## 📑 Referenfes
-
-- RFM95W datasheet: https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf
-- adafruit-circuitpython-rfm9x docs https://docs.circuitpython.org/projects/rfm9x/en/latest/api.html
-- adafruit-circuitpython-rfm9x GitHub page https://github.com/adafruit/Adafruit_CircuitPython_RFM
-
-
-
-
-## Getting Started with Meshtastic
-
-This HAT is compatible with Meshtastic using the native Linux daemon (meshtasticd), allowing your Raspberry Pi to operate as a full-featured LoRa mesh node.
-
-### Quick Start
-
-To get started with Meshtastic, you can run `setup-meshtastic.sh` on your raspberry pi: 
-
-```
-wget https://raw.githubusercontent.com/kyteg/LoRa-Hat/refs/heads/main/setup-meshtastic.sh
-chmod +x setup-meshtastic.sh
-sudo ./setup-meshtastic.sh
-```
-
-Alternatively, see below for manual setup:
-
-### Manually get started with Meshtasticd
-Instructions below will manually set up Meshtasticd
-
-### Install Meshtastic Daemon
-```bash
-sudo apt update
-sudo apt install meshtasticd
-```
-
-### Enable SPI
-Ensure SPI is enabled:
-
-```bash
-sudo raspi-config
-# Interface Options -> SPI -> Enable
-sudo reboot
-```
-
-### Check we're using CE0
-
-Ensure the output of `ls /dev/spidev*` does not contain `/dev/spidev0.1`
-
-If it does, see the "Troubleshoot" section above and ensure the output of `ls /dev/spidev*` does not contain `/dev/spidev0.1`.
-
-### Configure Meshtastic
+#### Configure Meshtastic
 
 Edit the configuration file:
 
@@ -195,7 +92,7 @@ Webserver:
   RootPath: /usr/share/meshtasticd/web # Root Dir of WebServer
 ```
 
-### Start the Service
+#### Start the Service
 ```bash
 sudo systemctl enable meshtasticd
 sudo systemctl start meshtasticd
@@ -214,49 +111,83 @@ sudo systemctl daemon-reload
 sudo systemctl restart meshtasticd
 ```
 
-### Access the Web UI
-
-Navigate to `https://[IP of your Raspberry Pi]`
-
-Select "New Connection" and "connect" (Your Pi's IP address should be prefilled in the HTTP section)
-
-
-### Install Meshtastic CLI
+#### Install Meshtastic CLI
 ```bash
 pip3 install meshtastic
 ```
 
-### Initial Setup
+### Lora Radio
 
-Set region (Australia/New Zealand):
+If you would like to experiment with LoRa without Meshtastic, please see the following:
+
+Prerequisite - Python3 should be installed on your Pi.
+
+#### Install dependencies
+
+Install the Python dependencies
 ```bash
-meshtastic --host localhost --set lora.region ANZ
+pip install adafruit-circuitpython-rfm9x
+```
+Enable SPI on Raspberry Pi
+```bash
+sudo raspi-config
+
+-> 5 Interfacing Options -> P4 SPI -> <Yes>
+
+sudo reboot
 ```
 
-Set default channel and modem preset:
+#### Ensure use of CE0
+
+Add the following line to `/boot/firmware/config.txt` and reboot.
+
 ```bash
-meshtastic --host localhost --ch-longfast
+dtoverlay=spi0-0cs
 ```
 
-Reboot the node:
+Ensure the output of `ls /dev/spidev*` does not contain `/dev/spidev0.1`
+
 ```bash
-meshtastic --host localhost --reboot
+ls /dev/spidev*
+/dev/spidev0.0
 ```
 
+#### Run the demo
 
-### Basic CLI commands
+You can now run the demo (in the Firmware directory of this repo)!
 
-List nodes:
+For Transmitter:
 ```bash
-meshtastic --host localhost --nodes
+python3 lora-tx.py
 ```
 
-Send a broadcast message:
+For Receiver:
 ```bash
-meshtastic --host localhost --sendtext "Hello from XenoLabs Pi"
+python3 lora-rx.py
 ```
 
-Listen for traffic:
-```bash
-meshtastic --host localhost --listen
-```
+<img src="images/Lora-demo-code.jpg" alt="LoRa demo code" width="1000"/>
+
+## 📌 Pinout
+
+| Function | Pi GPIO Pin | Physical Pin | Notes                                           |
+|----------|-------------|--------------|-------------------------------------------------|
+| DIO0     | GPIO25      | 22           |                                                 |
+| DIO1     | GPIO17      | 11           |                                                 |
+| DIO3     | GPIO27      | 13           |                                                 |
+| DIO4     | GPIO22      | 15           |                                                 |
+| DIO5     | GPIO23      | 16           |                                                 |
+| DIO6     | GPIO24      | 18           |                                                 |
+| MOSI     | GPIO10      | 19           | SPI MOSI                                        |
+| MISO     | GPIO9       | 21           | SPI MISO                                        |
+| SCK      | GPIO11      | 23           | SPI Clock                                       |
+| NSS      | GPIO7       | 26           | SPI Chip Select (CE1 / can be reassigned)       |
+| RESET    | GPIO5       | 29           | LoRa reset pin                                  |
+
+> **Note**: DIO pins can be disconnected from the Pi by removing the respective jumpers on the HAT.
+
+## 📑 Referenfes
+
+- RFM95W datasheet: https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf
+- adafruit-circuitpython-rfm9x docs https://docs.circuitpython.org/projects/rfm9x/en/latest/api.html
+- adafruit-circuitpython-rfm9x GitHub page https://github.com/adafruit/Adafruit_CircuitPython_RFM
