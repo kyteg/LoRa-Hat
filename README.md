@@ -1,5 +1,5 @@
 # Contact me
-Discord - kyteg
+Contact me on Discord - kyteg
 
 # 👽 XenoLabs LoRa Raspberry Pi HAT
 
@@ -12,6 +12,7 @@ A compact, high-performance LoRa HAT for Raspberry Pi designed for long-range wi
 - Semtech SX1276/78 LoRa radio (RFM95W)
 - Frequency: 915 MHz (AU/NZ/US)
 - Fully compatible with Raspberry Pi 3/4/5
+- Compatible with Meshtastic (meshtasticd)
 - 3.3V logic-level safe
 - Low power consumption
 - SMA antenna connector
@@ -31,7 +32,7 @@ LoRa-Hat/
 To get started with Meshtastic, you can run `setup-meshtastic.sh` on your raspberry pi: 
 
 ```
-wget 
+wget https://raw.githubusercontent.com/kyteg/LoRa-Hat/refs/heads/main/setup-meshtastic.sh
 chmod +x setup-meshtastic.sh
 sudo ./setup-meshtastic.sh
 ```
@@ -136,7 +137,7 @@ This HAT is compatible with Meshtastic using the native Linux daemon (meshtastic
 To get started with Meshtastic, you can run `setup-meshtastic.sh` on your raspberry pi: 
 
 ```
-wget 
+wget https://raw.githubusercontent.com/kyteg/LoRa-Hat/refs/heads/main/setup-meshtastic.sh
 chmod +x setup-meshtastic.sh
 sudo ./setup-meshtastic.sh
 ```
