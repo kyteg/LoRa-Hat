@@ -1,7 +1,7 @@
 # 📩 Contact me
 Contact me on Discord - kyteg
 
-# 👽 XenoLabs LoRa Raspberry Pi HAT
+# XenoLabs LoRa Raspberry Pi HAT
 
 A compact, high-performance LoRa HAT for Raspberry Pi designed for long-range wireless communication, custom mesh protocols, and rapid prototyping.
 
@@ -14,7 +14,7 @@ A compact, high-performance LoRa HAT for Raspberry Pi designed for long-range wi
 - Compatible with Raspberry Pi 3/4/5
 - Compatible with Meshtastic (meshtasticd)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Meshtastic
 
@@ -168,7 +168,7 @@ python3 lora-rx.py
 
 <img src="images/Lora-demo-code.jpg" alt="LoRa demo code" width="1000"/>
 
-## 📌 Pinout
+## Pinout
 
 | Function | Pi GPIO Pin | Physical Pin | Notes                                           |
 |----------|-------------|--------------|-------------------------------------------------|
@@ -186,7 +186,7 @@ python3 lora-rx.py
 
 > **Note**: DIO pins can be disconnected from the Pi by removing the respective jumpers on the HAT.
 
-## 📑 Referenfes
+## Referenfes
 
 - RFM95W datasheet: https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf
 - adafruit-circuitpython-rfm9x docs https://docs.circuitpython.org/projects/rfm9x/en/latest/api.html
